@@ -122,4 +122,25 @@ public class StringUtils {
 
 		return idx;
 	}
+
+	/**
+	 * Obtains the amount of times a substring occurs in a given String
+	 *
+	 * @param source The String to traverse
+	 * @param token The substring to look for, can be a regex
+	 * @return The number of times token occurred in source. If both source and token are empty, returns -1.
+	 */
+	public static int getTokenCount(String source, String token){
+		if(source.isEmpty() || token.isEmpty())
+			return -1;
+
+		int count = 0;
+		Pattern p = Pattern.compile(token);
+		Matcher m = p.matcher(source);
+
+		while(m.find())
+			count++;
+
+		return count;
+	}
 }
