@@ -2,6 +2,8 @@ package net.samism.java.StringUtils;
 
 import java.io.UnsupportedEncodingException;
 import java.net.URLDecoder;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 /**
  * Created with IntelliJ IDEA.
@@ -91,5 +93,33 @@ public class StringUtils {
 		}
 
 		System.out.println(s.toString());
+	}
+
+	/**
+	 * Obtains the n-th index of a given substring within a String, starting from the 0th index.
+	 *
+	 * @param source The String to search
+	 * @param s The substring to find the n-th index of, regex can be used here
+	 * @param n The particular instance of the substring that is found, >= 1
+	 * @return The index of the beginning of the n-th occurrence of the substring in question; else -1, if there isn't
+	 * even a single indexOf
+	 */
+	public static int nthIndexOf(String source, String s, int n){
+		int idx = 0, instance = 0;
+
+		if(source.isEmpty() || s.isEmpty() | !source.contains(s) || n < 1)
+			return -1;
+
+		Pattern p = Pattern.compile(s);
+		Matcher m = p.matcher(source);
+
+		while(m.find()){
+			instance++;
+
+			if(instance == n)
+				idx = m.start();
+		}
+
+		return idx;
 	}
 }
