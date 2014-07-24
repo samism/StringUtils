@@ -59,7 +59,7 @@ public class StringUtils {
 	 * @return The index of the nth occurance of str in token, if it exists.
 	 * If n is greater than the number of occurrences existing, null will be returned.
 	 */
-	public static int nthIndexOf(final String str, final String token, int n) {
+	public static int nthIndexOf(String str, String token, int n) {
 		if (n < 1) n = 1;
 		int[] indices = getIndicesOf(str, token);
 
@@ -73,7 +73,7 @@ public class StringUtils {
 	 * @param str String to strip spaces off of
 	 * @return Space-free version of str
 	 */
-	public static String stripSpaces(final String str) {
+	public static String stripSpaces(String str) {
 		return str.replaceAll("\\s+", "");
 	}
 
