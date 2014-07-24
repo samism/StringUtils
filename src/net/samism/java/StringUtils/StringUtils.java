@@ -68,8 +68,7 @@ public class StringUtils {
 
 	/**
 	 * Like {@link java.lang.String#trim()} except covers entire string instead of the start and end.
-	 * <p>
-	 * You could do {@link java.lang.String#replaceAll(String, String)}, but calling this method is shorter.
+	 * You could do {@link java.lang.String#replaceAll(String, String)}, but calling this method is more semantic.
 	 *
 	 * @param str String to strip spaces off of
 	 * @return Space-free version of str
