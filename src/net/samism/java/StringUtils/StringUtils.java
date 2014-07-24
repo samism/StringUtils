@@ -22,7 +22,7 @@ public class StringUtils {
 	 *
 	 * @param str   The string to search
 	 * @param token The token to find
-	 * @return An {@link java.util.ArrayList} of all the indices found of token in str in order.
+	 * @return An {@see java.util.ArrayList} of all the indices found of token in str in order.
 	 * If token is not found in str, returns null.
 	 * @throws IllegalArgumentException If token.length() > str.length()
 	 */
@@ -67,8 +67,8 @@ public class StringUtils {
 	}
 
 	/**
-	 * Like {@link java.lang.String#trim()} except covers entire string instead of the start and end.
-	 * You could do {@link java.lang.String#replaceAll(String, String)}, but calling this method is more semantic.
+	 * Like {@see java.lang.String#trim()} except covers entire string instead of the start and end.
+	 * You could do {@see java.lang.String#replaceAll(String, String)}, but calling this method is more semantic.
 	 *
 	 * @param str String to strip spaces off of
 	 * @return Space-free version of str
@@ -94,8 +94,58 @@ public class StringUtils {
 	 * @param str String to convert to a word array
 	 * @return An array of strings from str
 	 */
-	public static String[] toWordArray(final String str) {
+	public static String[] toWordArray(String str) {
 		return toSingleSpaced(str).split(" ");
+	}
+
+	/**
+	 * Gets the length of the longest element in a String array.
+	 *
+	 * @param str String array to analyze.
+	 * @return An integer size of the longest of the elements in str.
+	 */
+	private static int getLongestElementLength(String[] str) {
+		int longest = 0;
+
+		for (String s : str) {
+			int curLen = s.length();
+
+			if (curLen > longest)
+				longest = curLen;
+		}
+
+		return longest;
+	}
+
+	/**
+	 * Useful for getting a String representation of a String array.
+	 * <p/>
+	 * This method comes in when people run into the unexpected output of
+	 * <pre>new String[]{"hi", "there"}.toString()</pre>
+	 * <p/>
+	 * To get the excepted results of simply printing the contents of a string array, people
+	 * usually go with a for loop to loop through the array and print it's contents. That takes too many
+	 * lines, so this method does that for you in one line.
+	 * <p/>
+	 * Differs to {@see Arrays#toString(Object[])} only in the fact that you can choose whether to represent
+	 * the elements of the array delimited by newline characters or commas.
+	 *
+	 * @param str        String array to print out
+	 * @param isNewLined Whether or not to separate elements with a tab or by a newline
+	 * @return An index-numbered list of the string contents of str
+	 */
+	public static String arrayToString(String[] str, boolean isNewLined) {
+		final StringBuilder str2 = new StringBuilder();
+		final int longestLen = getLongestElementLength(str);
+
+		str2.ensureCapacity(longestLen * str.length);
+
+		for (int i = 0; i < str.length - 1; i++) {
+			String me = i + ": " + str[i] + (isNewLined ? "\n" : ((i == str.length - 1) ? "" : ", "));
+			str2.append(me);
+		}
+
+		return str2.toString();
 	}
 
 	/**
