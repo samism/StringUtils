@@ -3,6 +3,8 @@ package net.samism.java.StringUtils;
 import java.io.UnsupportedEncodingException;
 import java.net.URLDecoder;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -146,6 +148,24 @@ public class StringUtils {
 		}
 
 		return str2.toString();
+	}
+
+	/**
+	 * Converts a String array to the specified type of collection.
+	 *
+	 * <b>The specified type of collection must be a subclass of {@see java.util.AbstractList}.</b>
+	 *
+	 * @param str   The array of Strings to convert from
+	 * @param class_ The collection's class to convert to
+	 * @return A Collection specified by clazz, loaded with the elements of str
+	 * @deprecated Use {@see java.util.Arrays#asList(Object[])}; it's shorter.
+	 * @throws IllegalAccessException &nbsp;
+	 * @throws InstantiationException &nbsp;
+	 */
+	public static List<String> arrayAsList(String[] str, Class<? extends List> class_)
+			throws IllegalAccessException, InstantiationException {
+		final List collection;
+		return Collections.addAll((collection = class_.newInstance()), str) ? collection : null;
 	}
 
 	/**
