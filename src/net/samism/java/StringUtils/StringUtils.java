@@ -121,14 +121,14 @@ public class StringUtils {
 
 	/**
 	 * Useful for getting a String representation of a String array.
-	 * <p/>
+	 * <p>
 	 * This method comes in when people run into the unexpected output of
 	 * <pre>new String[]{"hi", "there"}.toString()</pre>
-	 * <p/>
+	 * <p>
 	 * To get the excepted results of simply printing the contents of a string array, people
 	 * usually go with a for loop to loop through the array and print it's contents. That takes too many
 	 * lines, so this method does that for you in one line.
-	 * <p/>
+	 * <p>
 	 * Differs to {@see Arrays#toString(Object[])} only in the fact that you can choose whether to represent
 	 * the elements of the array delimited by newline characters or commas.
 	 *
@@ -152,15 +152,15 @@ public class StringUtils {
 
 	/**
 	 * Converts a String array to the specified type of collection.
-	 *
+	 * <p>
 	 * <b>The specified type of collection must be a subclass of {@see java.util.AbstractList}.</b>
 	 *
-	 * @param str   The array of Strings to convert from
+	 * @param str    The array of Strings to convert from
 	 * @param class_ The collection's class to convert to
 	 * @return A Collection specified by clazz, loaded with the elements of str
-	 * @deprecated Use {@see java.util.Arrays#asList(Object[])}; it's shorter.
 	 * @throws IllegalAccessException &nbsp;
 	 * @throws InstantiationException &nbsp;
+	 * @deprecated Use {@see java.util.Arrays#asList(Object[])}; it's shorter.
 	 */
 	public static List<String> arrayAsList(String[] str, Class<? extends List> class_)
 			throws IllegalAccessException, InstantiationException {
@@ -215,6 +215,14 @@ public class StringUtils {
 	public static String normalizeForOS(String s) {
 		return s.replaceAll("[^a-zA-Z0-9\\.\\-]", "_");
 	}
+
+	/**
+	 * Determines if any Strings within an array are contained within another String.
+	 *
+	 * @param inputString The overall String
+	 * @param items       The Strings to find within the overall
+	 * @return True if some element of the array exists within the String
+	 */
 
 	public static boolean containsItemFromList(String inputString, String[] items) {
 		for (int i = 0; i < items.length; i++) {
