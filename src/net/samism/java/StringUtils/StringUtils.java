@@ -12,6 +12,9 @@ import java.util.regex.Pattern;
  * Time: 9:32 PM
  */
 public class StringUtils {
+	private StringUtils() throws Exception {
+		throw new Exception("Use this class statically. No instantiation.");
+	}
 
 	/**
 	 * Returns the index of where the given substring ends, rather than where it starts
