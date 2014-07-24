@@ -78,6 +78,16 @@ public class StringUtils {
 	}
 
 	/**
+	 * Useful for turning an unknown amount of consecutive spaces into single spaces
+	 *
+	 * @param str String to work with
+	 * @return If str has a set of two or more consecutive sets of spaces, it returns a single spaced version
+	 */
+	public static String toSingleSpaced(String str) {
+		return str.contains("  ") ? toSingleSpaced(str.replace("  ", " ")) : str;
+	}
+
+	/**
 	 * Returns the index of where the given substring ends, rather than where it starts
 	 * as per String#indexOf
 	 *
