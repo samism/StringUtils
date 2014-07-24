@@ -88,6 +88,17 @@ public class StringUtils {
 	}
 
 	/**
+	 * Useful if you want to take a sentence or anything delimited by spaces, and split it into
+	 * an array of things you can use.
+	 *
+	 * @param str String to convert to a word array
+	 * @return An array of strings from str
+	 */
+	public static String[] toWordArray(final String str) {
+		return toSingleSpaced(str).split(" ");
+	}
+
+	/**
 	 * Returns the index of where the given substring ends, rather than where it starts
 	 * as per String#indexOf
 	 *
