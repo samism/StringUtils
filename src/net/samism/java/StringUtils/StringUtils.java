@@ -23,7 +23,7 @@ public class StringUtils {
 	 * @param str   The string to search
 	 * @param token The token to find
 	 * @return An {@link java.util.ArrayList} of all the indices found of token in str in order.
-	 *         If token is not found in str, returns null.
+	 * If token is not found in str, returns null.
 	 * @throws IllegalArgumentException If token.length() > str.length()
 	 */
 	public static int[] getIndicesOf(String str, String token) {
@@ -48,6 +48,34 @@ public class StringUtils {
 		}
 
 		return indices.size() == 0 ? null : indiceArray;
+	}
+
+	/**
+	 * Useful to have more control than simply just getting the first and last index.
+	 *
+	 * @param str   The string to search
+	 * @param token The token to find
+	 * @param n     The index occurance to find - <b>n must > 0</b>
+	 * @return The index of the nth occurance of str in token, if it exists.
+	 * If n is greater than the number of occurrences existing, null will be returned.
+	 */
+	public static int nthIndexOf(final String str, final String token, int n) {
+		if (n < 1) n = 1;
+		int[] indices = getIndicesOf(str, token);
+
+		return n > (indices.length - 1) ? -1 : indices[n];
+	}
+
+	/**
+	 * Like {@link java.lang.String#trim()} except covers entire string instead of the start and end.
+	 * <p>
+	 * You could do {@link java.lang.String#replaceAll(String, String)}, but calling this method is shorter.
+	 *
+	 * @param str String to strip spaces off of
+	 * @return Space-free version of str
+	 */
+	public static String stripSpaces(final String str) {
+		return str.replaceAll("\\s+", "");
 	}
 
 	/**
@@ -133,49 +161,21 @@ public class StringUtils {
 	}
 
 	/**
-	 * Obtains the n-th index of a given substring within a String, starting from the 0th index.
-	 *
-	 * @param source The String to search
-	 * @param s The substring to find the n-th index of, regex can be used here
-	 * @param n The particular instance of the substring that is found, >= 1
-	 * @return The index of the beginning of the n-th occurrence of the substring in question; else -1, if there isn't
-	 * even a single indexOf
-	 */
-	public static int nthIndexOf(String source, String s, int n){
-		int idx = 0, instance = 0;
-
-		if(source.isEmpty() || s.isEmpty() | !source.contains(s) || n < 1)
-			return -1;
-
-		Pattern p = Pattern.compile(s);
-		Matcher m = p.matcher(source);
-
-		while(m.find()){
-			instance++;
-
-			if(instance == n)
-				idx = m.start();
-		}
-
-		return idx;
-	}
-
-	/**
 	 * Obtains the amount of times a substring occurs in a given String
 	 *
 	 * @param source The String to traverse
-	 * @param token The substring to look for, can be a regex
+	 * @param token  The substring to look for, can be a regex
 	 * @return The number of times token occurred in source. If both source and token are empty, returns -1.
 	 */
-	public static int getTokenCount(String source, String token){
-		if(source.isEmpty() || token.isEmpty())
+	public static int getTokenCount(String source, String token) {
+		if (source.isEmpty() || token.isEmpty())
 			return -1;
 
 		int count = 0;
 		Pattern p = Pattern.compile(token);
 		Matcher m = p.matcher(source);
 
-		while(m.find())
+		while (m.find())
 			count++;
 
 		return count;
