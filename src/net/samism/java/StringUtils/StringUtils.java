@@ -2,6 +2,7 @@ package net.samism.java.StringUtils;
 
 import java.io.UnsupportedEncodingException;
 import java.net.URLDecoder;
+import java.util.ArrayList;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -14,6 +15,40 @@ import java.util.regex.Pattern;
 public class StringUtils {
 	private StringUtils() throws Exception {
 		throw new Exception("Use this class statically. No instantiation.");
+	}
+
+	/**
+	 * Useful because it gets all the indices instead of the just the first or last one.
+	 *
+	 * @param str   The string to search
+	 * @param token The token to find
+	 * @return An {@link java.util.ArrayList} of all the indices found of token in str in order.
+	 *         If token is not found in str, returns null.
+	 *         <p/>
+	 * @throws IllegalArgumentException If token.length() > str.length()
+	 */
+	public static int[] getIndicesOf(String str, String token) {
+		if (str.length() < token.length()) {
+			throw new IllegalArgumentException("token's length must not exceed searched string's length");
+		}
+
+		ArrayList<Integer> indices = new ArrayList<Integer>();
+
+		for (int i = 0; i <= str.length(); i++) {
+			if ((str.length() - i) < token.length()) //prevent iobe
+				break;
+			if (str.substring(i, i + token.length()).equalsIgnoreCase(token)) {
+				indices.add(i);
+			}
+		}
+
+		int[] indiceArray = new int[indices.size()];
+
+		for (int i = 0; i < indices.size(); i++) {
+			indiceArray[i] = indices.get(i);
+		}
+
+		return indices.size() == 0 ? null : indiceArray;
 	}
 
 	/**
