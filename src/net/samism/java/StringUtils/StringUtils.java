@@ -233,15 +233,36 @@ public class StringUtils {
 		return false;
 	}
 
-	public static void logStringArray(String[] u, org.slf4j.Logger log) {
+	/**
+	 * A way to print the elements of a String array using the logger from slf4j.
+	 *
+	 * @param u     The String array to log
+	 * @param log   The slf4j Logger instance to use
+	 * @param label The prefix before each element for neatness.
+	 */
+
+	public static void logStringArray(String[] u, org.slf4j.Logger log, String label) {
 		for (String _u : u)
-			log.info("url: " + _u);
+			log.info(label + " " + _u);
 	}
+
+	/**
+	 * A way to print the elements of a String array with {@see java.lang.System.out#println()}
+	 *
+	 * @param u     The String array to log
+	 * @param label The prefix before each element for neatness.
+	 */
 
 	public static void printStringArray(String[] u, String label) {
 		for (String _u : u)
-			System.out.println(label + _u);
+			System.out.println(label + " " + _u);
 	}
+
+	/**
+	 * Prints the contents of an array in a way I can just copy and past as valid Java code.
+	 *
+	 * @param u The array to parse
+	 */
 
 	public static void printAsJavaStringArray(String[] u) {
 		StringBuilder s = new StringBuilder("new String[] {");
