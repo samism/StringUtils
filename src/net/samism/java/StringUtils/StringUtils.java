@@ -24,7 +24,6 @@ public class StringUtils {
 	 * @param token The token to find
 	 * @return An {@link java.util.ArrayList} of all the indices found of token in str in order.
 	 *         If token is not found in str, returns null.
-	 *         <p/>
 	 * @throws IllegalArgumentException If token.length() > str.length()
 	 */
 	public static int[] getIndicesOf(String str, String token) {
