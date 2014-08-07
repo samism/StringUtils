@@ -151,24 +151,6 @@ public class StringUtils {
 	}
 
 	/**
-	 * Converts a String array to the specified type of collection.
-	 * <p>
-	 * <b>The specified type of collection must be a subclass of {@see java.util.AbstractList}.</b>
-	 *
-	 * @param str    The array of Strings to convert from
-	 * @param class_ The collection's class to convert to
-	 * @return A Collection specified by clazz, loaded with the elements of str
-	 * @throws IllegalAccessException &nbsp;
-	 * @throws InstantiationException &nbsp;
-	 * @deprecated Use {@see java.util.Arrays#asList(Object[])}; it's shorter.
-	 */
-	public static List<String> arrayAsList(String[] str, Class<? extends List> class_)
-			throws IllegalAccessException, InstantiationException {
-		final List collection;
-		return Collections.addAll((collection = class_.newInstance()), str) ? collection : null;
-	}
-
-	/**
 	 * Returns the index of where the given substring ends, rather than where it starts
 	 * as per String#indexOf
 	 *
@@ -245,8 +227,11 @@ public class StringUtils {
 	public static int countOccurrences(char a, String b) {
 		int occ = 0;
 
-		for(char c : b.toCharArray())
-			if(c == a) occ++;
+		for(char c : b.toCharArray()) {
+			if (c == a) {
+				occ++;
+			}
+		}
 
 		return occ;
 	}
@@ -317,4 +302,6 @@ public class StringUtils {
 
 		return count;
 	}
+
+	public static void main(String[] args){}
 }
