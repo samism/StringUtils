@@ -3,6 +3,7 @@ package net.samism.java.StringUtils;
 import java.io.UnsupportedEncodingException;
 import java.net.URLDecoder;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -61,9 +62,12 @@ public class StringUtils {
 	 */
 	public static int nthIndexOf(String str, String token, int n) {
 		if (n < 1) n = 1;
+
+		n--;
+
 		int[] indices = getIndicesOf(str, token);
 
-		return n > (indices.length - 1) ? -1 : indices[n - 1];
+		return n > (indices.length - 1) ? -1 : indices[n];
 	}
 
 	/**
@@ -302,5 +306,7 @@ public class StringUtils {
 	}
 
 	public static void main(String[] args) {
+		System.out.println(Arrays.toString(getIndicesOf("houses", "s")));
+		System.out.println(nthIndexOf("houses", "s", 2));
 	}
 }
