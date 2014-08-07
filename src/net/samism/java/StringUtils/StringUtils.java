@@ -3,8 +3,6 @@ package net.samism.java.StringUtils;
 import java.io.UnsupportedEncodingException;
 import java.net.URLDecoder;
 import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -65,7 +63,7 @@ public class StringUtils {
 		if (n < 1) n = 1;
 		int[] indices = getIndicesOf(str, token);
 
-		return n > (indices.length - 1) ? -1 : indices[n];
+		return n > (indices.length - 1) ? -1 : indices[n + 1];
 	}
 
 	/**
@@ -227,7 +225,7 @@ public class StringUtils {
 	public static int countOccurrences(char a, String b) {
 		int occ = 0;
 
-		for(char c : b.toCharArray()) {
+		for (char c : b.toCharArray()) {
 			if (c == a) {
 				occ++;
 			}
@@ -303,5 +301,6 @@ public class StringUtils {
 		return count;
 	}
 
-	public static void main(String[] args){}
+	public static void main(String[] args) {
+	}
 }
