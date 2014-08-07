@@ -63,7 +63,7 @@ public class StringUtils {
 		if (n < 1) n = 1;
 		int[] indices = getIndicesOf(str, token);
 
-		return n > (indices.length - 1) ? -1 : indices[n + 1];
+		return n > (indices.length - 1) ? -1 : indices[n - 1];
 	}
 
 	/**
