@@ -234,6 +234,24 @@ public class StringUtils {
 	}
 
 	/**
+	 * Finds how many times a char is found within a String.
+	 * I made this because the method countMatches(CharSequence str, CharSequence sub) from the commons lang library
+	 * wasn't working...
+	 *
+	 * @param a The char you're looking for
+	 * @param b The String in question
+	 * @return An int representing how many times a was found in b.
+	 */
+	public static int countOccurrences(char a, String b) {
+		int occ = 0;
+
+		for(char c : b.toCharArray())
+			if(c == a) occ++;
+
+		return occ;
+	}
+
+	/**
 	 * A way to print the elements of a String array using the logger from slf4j.
 	 *
 	 * @param u     The String array to log
