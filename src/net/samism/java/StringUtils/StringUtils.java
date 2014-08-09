@@ -171,8 +171,10 @@ public class StringUtils {
 	/**
 	 * Decodes a url that has been recursively encoded.
 	 *
-	 * @param encoded String that is URLEncoded
+	 * @param encoded  String that is URLEncoded
+	 * @param encoding One of the six standard charsets outlined in @see http://docs.oracle.com/javase/7/docs/api/java/nio/charset/Charset.html
 	 * @return String that is completely URLDecoded
+	 * @
 	 */
 	public static String decodeCompletely(String encoded, String encoding) throws UnsupportedEncodingException,
 			IllegalArgumentException {
