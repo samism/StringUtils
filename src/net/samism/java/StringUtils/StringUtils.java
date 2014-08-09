@@ -174,14 +174,14 @@ public class StringUtils {
 	 * @param encoded String that is URLEncoded
 	 * @return String that is completely URLDecoded
 	 */
-	public static String decodeCompletely(String encoded) throws UnsupportedEncodingException,
+	public static String decodeCompletely(String encoded, String encoding) throws UnsupportedEncodingException,
 			IllegalArgumentException {
 		String uno = encoded;
 		String dos = uno;
 
 		do {
 			uno = dos;
-			dos = URLDecoder.decode(uno, "UTF-8");
+			dos = URLDecoder.decode(uno, encoding);
 		} while (!uno.equals(dos));
 
 		return uno; //can return either one at this point
