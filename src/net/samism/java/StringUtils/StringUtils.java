@@ -15,7 +15,7 @@ import java.util.regex.Pattern;
  */
 public class StringUtils {
 	private StringUtils() throws Exception {
-		throw new Exception("Use this class statically. No instantiation.");
+		throw new InstantiationException("Use this class statically. No instantiation.");
 	}
 
 	/**
