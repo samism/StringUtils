@@ -21,34 +21,39 @@ public class StringUtils {
 	/**
 	 * Useful because it gets all the indices instead of the just the first or last one.
 	 *
-	 * @param str   The string to search
-	 * @param token The token to find
+	 * @param string The string to search
+	 * @param token  The token to find
 	 * @return An {@see java.util.ArrayList} of all the indices found of token in str in order.
 	 * If token is not found in str, returns null.
 	 * @throws IllegalArgumentException If token.length() > str.length()
 	 */
-	public static int[] getIndicesOf(String str, String token) {
-		if (str.length() < token.length()) {
+	public static int[] getIndicesOf(String string, String token) {
+		if (string.length() < token.length()) {
 			throw new IllegalArgumentException("token's length must not exceed searched string's length");
 		}
 
-		ArrayList<Integer> indices = new ArrayList<Integer>();
+		ArrayList<Integer> indices = new ArrayList<>();
 
-		for (int i = 0; i <= str.length(); i++) {
-			if ((str.length() - i) < token.length()) //prevent iobe
+		for (int i = 0; i <= string.length(); i++) {
+			if ((string.length() - i) < token.length()) //prevent iobe
 				break;
-			if (str.substring(i, i + token.length()).equalsIgnoreCase(token)) {
+			if (string.substring(i, i + token.length()).equalsIgnoreCase(token)) {
 				indices.add(i);
 			}
 		}
 
-		int[] indiceArray = new int[indices.size()];
+		if (indices.isEmpty())
+			return new int[]{};
 
-		for (int i = 0; i < indices.size(); i++) {
-			indiceArray[i] = indices.get(i);
+		//would use toArray() but it would give me an Integer[] not the primitive int array
+		//manually fill up the array & return that.
+		int[] arr = new int[indices.size()];
+		int i = 0;
+		for (Integer n : indices) { //for-each so i dont have to mess with indices too much
+			arr[i++] = n; //auto un-boxed from Integer to primitive
 		}
 
-		return indices.size() == 0 ? null : indiceArray;
+		return arr;
 	}
 
 	/**

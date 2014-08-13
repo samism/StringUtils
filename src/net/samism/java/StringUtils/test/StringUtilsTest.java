@@ -1,6 +1,8 @@
 package net.samism.java.StringUtils.test;
 
+import org.junit.Rule;
 import org.junit.Test;
+import org.junit.rules.ExpectedException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -22,19 +24,19 @@ public class StringUtilsTest {
 		test.testGetIndicesOf();
 	}
 
-	@Test
+	@Test (expected=IllegalArgumentException.class)
 	public void testGetIndicesOf() {
-		try {
-			assertArrayEquals(getIndicesOf("tomorrow", "o"), new int[]{1, 3, 6});
-			assertArrayEquals(getIndicesOf("tomorrow", null), null);
-			assertArrayEquals(getIndicesOf("tomorrow", ""), null);
-			assertArrayEquals(getIndicesOf("tomorrow", "z"), null);
-			assertArrayEquals(getIndicesOf("", "tomorrow"), null);
-			assertArrayEquals(getIndicesOf(null, "tomorrow"), null);
-			assertArrayEquals(getIndicesOf(null, null), null);
-		} catch (Exception e) {
-			String expectedExceptionText = "token's length must not exceed searched string's length";
-			assertEquals(expectedExceptionText, e.getMessage());
-		}
+//		try {
+		assertArrayEquals(getIndicesOf("tomorrow", "o"), new int[]{1, 3, 6});
+		assertArrayEquals(getIndicesOf("tomorrow", null), null);
+		assertArrayEquals(getIndicesOf("tomorrow", ""), null);
+		assertArrayEquals(getIndicesOf("tomorrow", "z"), null);
+		assertArrayEquals(getIndicesOf("", "tomorrow"), null);
+		assertArrayEquals(getIndicesOf(null, "tomorrow"), null);
+		assertArrayEquals(getIndicesOf(null, null), null);
+//		} catch (Exception e) {
+//			String expectedExceptionText = "token's length must not exceed searched string's length";
+//			assertEquals(expectedExceptionText, e.getMessage());
+//		}
 	}
 }
