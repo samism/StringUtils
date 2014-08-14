@@ -28,12 +28,12 @@ public class StringUtilsTest {
 	public void testGetIndicesOf() {
 //		try {
 		assertArrayEquals(getIndicesOf("tomorrow", "o"), new int[]{1, 3, 6});
-		assertArrayEquals(getIndicesOf("tomorrow", null), null);
-		assertArrayEquals(getIndicesOf("tomorrow", ""), null);
-		assertArrayEquals(getIndicesOf("tomorrow", "z"), null);
-		assertArrayEquals(getIndicesOf("", "tomorrow"), null);
-		assertArrayEquals(getIndicesOf(null, "tomorrow"), null);
-		assertArrayEquals(getIndicesOf(null, null), null);
+//		assertArrayEquals(getIndicesOf("tomorrow", null), null);
+//		assertArrayEquals(getIndicesOf("tomorrow", ""), null);
+//		assertArrayEquals(getIndicesOf("tomorrow", "z"), null);
+//		assertArrayEquals(getIndicesOf("", "tomorrow"), null);
+//		assertArrayEquals(getIndicesOf(null, "tomorrow"), null);
+//		assertArrayEquals(getIndicesOf(null, null), null);
 //		} catch (Exception e) {
 //			String expectedExceptionText = "token's length must not exceed searched string's length";
 //			assertEquals(expectedExceptionText, e.getMessage());

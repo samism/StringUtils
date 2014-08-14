@@ -29,7 +29,7 @@ public class StringUtils {
 	 */
 	public static int[] getIndicesOf(String string, String token) {
 		if (string.length() < token.length()) {
-			throw new IllegalArgumentException("token's length must not exceed searched string's length");
+			throw new IllegalArgumentException("Token's length must not exceed token string's length");
 		}
 
 		ArrayList<Integer> indices = new ArrayList<>();
@@ -43,7 +43,7 @@ public class StringUtils {
 		}
 
 		if (indices.isEmpty())
-			return new int[]{};
+			return new int[]{}; //return empty array instead of null
 
 		//would use toArray() but it would give me an Integer[] not the primitive int array
 		//manually fill up the array & return that.
@@ -59,18 +59,19 @@ public class StringUtils {
 	/**
 	 * Useful to have more control than simply just getting the first and last index.
 	 *
-	 * @param str   The string to search
+	 * @param string   The string to search
 	 * @param token The token to find
 	 * @param n     The index occurance to find - <b>n must > 0</b>
 	 * @return The index of the nth occurance of str in token, if it exists.
 	 * If n is greater than the number of occurrences existing, null will be returned.
 	 */
-	public static int nthIndexOf(String str, String token, int n) {
-		if (n < 1) n = 1;
+	public static int nthIndexOf(String string, String token, int n) {
+		if (n < 1 || string.isEmpty() || token.isEmpty())
+			throw new IllegalArgumentException("n was non-positive, or the string and/or token was invalid.");
 
-		n--;
+		n--; //minus one to work with arrays
 
-		int[] indices = getIndicesOf(str, token);
+		int[] indices = getIndicesOf(string, token);
 
 		return n > (indices.length - 1) ? -1 : indices[n];
 	}
@@ -93,7 +94,10 @@ public class StringUtils {
 	 * @return If str has a set of two or more consecutive sets of spaces, it returns a single spaced version
 	 */
 	public static String toSingleSpaced(String str) {
-		return str.contains("  ") ? toSingleSpaced(str.replace("  ", " ")) : str;
+		Pattern p = Pattern.compile("\\s{2,}");
+		Matcher m = p.matcher(str);
+
+		return m.find() ? toSingleSpaced(str.replaceAll(p.pattern(), " ")) : str;
 	}
 
 	/**
@@ -108,12 +112,12 @@ public class StringUtils {
 	}
 
 	/**
-	 * Gets the length of the longest element in a String array.
+	 * Finds the length of the longest element in a String array.
 	 *
 	 * @param str String array to analyze.
 	 * @return An integer size of the longest of the elements in str.
 	 */
-	private static int getLongestElementLength(String[] str) {
+	private static int getArrayHorizontalLimit(String[] str) {
 		int longest = 0;
 
 		for (String s : str) {
@@ -145,7 +149,7 @@ public class StringUtils {
 	 */
 	public static String arrayToString(String[] str, boolean isNewLined) {
 		final StringBuilder str2 = new StringBuilder();
-		final int longestLen = getLongestElementLength(str);
+		final int longestLen = getArrayHorizontalLimit(str);
 
 		str2.ensureCapacity(longestLen * str.length);
 
