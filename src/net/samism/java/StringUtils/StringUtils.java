@@ -3,7 +3,6 @@ package net.samism.java.StringUtils;
 import java.io.UnsupportedEncodingException;
 import java.net.URLDecoder;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -183,7 +182,7 @@ public class StringUtils {
 	 *
 	 * @param str    String in question
 	 * @param phrase substring to find the index of
-	 * @param n nth occurence of the phrase
+	 * @param n      nth occurence of the phrase
 	 * @return The index of where the first occurance of the given phrase in the string ends rather than where it starts
 	 * as per String#indexOf.
 	 */
@@ -216,7 +215,7 @@ public class StringUtils {
 	}
 
 	/**
-	 * For generating relatively safe filenames
+	 * For generating relatively universal, safe filenames
 	 *
 	 * @param s A filename that might be unsafe for an OS
 	 * @return The same string with everything except letters, numbers, ".", and "-" replaced with an underscore ("_").
@@ -234,8 +233,8 @@ public class StringUtils {
 	 */
 
 	public static boolean containsItemFromList(String inputString, String[] items) {
-		for (int i = 0; i < items.length; i++) {
-			if (inputString.contains(items[i])) {
+		for (String item : items) {
+			if (inputString.contains(item)) {
 				return true;
 			}
 		}
@@ -328,10 +327,5 @@ public class StringUtils {
 			count++;
 
 		return count;
-	}
-
-	public static void main(String[] args) {
-		System.out.println(Arrays.toString(getIndicesOf("houses", "s")));
-		System.out.println(nthIndexOf("houses", "s", 2));
 	}
 }
