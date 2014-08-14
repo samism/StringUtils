@@ -59,9 +59,9 @@ public class StringUtils {
 	/**
 	 * Useful to have more control than simply just getting the first and last index.
 	 *
-	 * @param string   The string to search
-	 * @param token The token to find
-	 * @param n     The index occurance to find - <b>n must > 0</b>
+	 * @param string The string to search
+	 * @param token  The token to find
+	 * @param n      The index occurance to find - <b>n must > 0</b>
 	 * @return The index of the nth occurance of str in token, if it exists.
 	 * If n is greater than the number of occurrences existing, null will be returned.
 	 */
@@ -162,16 +162,33 @@ public class StringUtils {
 	}
 
 	/**
-	 * Returns the index of where the given substring ends, rather than where it starts
+	 * Returns the index of where the first occurance of the given substring ends, rather than where it starts
 	 * as per String#indexOf
 	 *
 	 * @param str    String in question
 	 * @param phrase substring to find the index of
-	 * @return The index of where the given string ends rather than where it starts
-	 * as per String#indexOf
+	 * @return The index of where the first occurance of the given phrase in the string ends rather than where it starts
+	 * as per String#indexOf.
 	 */
 	public static int indexOfLastChar(String str, String phrase) {
 		int idx = str.indexOf(phrase);
+		int len = phrase.length();
+
+		return idx + len;
+	}
+
+	/**
+	 * Returns the index of where the nth occurance of the given substring ends, rather than where it starts
+	 * as per String#indexOf
+	 *
+	 * @param str    String in question
+	 * @param phrase substring to find the index of
+	 * @param n nth occurence of the phrase
+	 * @return The index of where the first occurance of the given phrase in the string ends rather than where it starts
+	 * as per String#indexOf.
+	 */
+	public static int nthIndexOfLastChar(String str, String phrase, int n) {
+		int idx = nthIndexOf(str, phrase, n);
 		int len = phrase.length();
 
 		return idx + len;
